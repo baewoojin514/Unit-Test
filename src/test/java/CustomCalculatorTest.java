@@ -82,7 +82,8 @@ public class CustomCalculatorTest {
         assertThat(myList, is(empty()));
     }
     @Test
-    public void isEmpty(){
-        
+    public void isEmptyArray() {
+        ArrayList<Object> myList = new ArrayList<>();
+        assertThat(myList, is(empty()));
     }
 }
