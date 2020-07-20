@@ -1,9 +1,20 @@
 import org.junit.Before;
 import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
+import static junit.framework.TestCase.assertTrue;
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.closeTo;
+import static org.hamcrest.Matchers.hasProperty;
+import static org.hamcrest.beans.SamePropertyValuesAs.samePropertyValuesAs;
+import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
+import static org.hamcrest.collection.IsEmptyCollection.empty;
+import static org.hamcrest.object.HasToString.hasToString;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class ChampionTest {
     private List<Champion> championList = new ArrayList<Champion>();
@@ -30,14 +41,14 @@ public class ChampionTest {
     @Test
     public void givenCollectionWhenEmptyCorrect() {
         List<String> emptyList = new ArrayList<>();
-//        assertThat(emptyList, empty());
+        assertThat(emptyList, empty());
     }
 
     //notNullValue 활용한 테스트
     @Test
     public void notNullCheck() {
         String lck = "LCK";
-//        assertThat(lck, notNullValue());
+        assertThat(lck, notNullValue());
     }
 
     //nullValue 활용한 테스트

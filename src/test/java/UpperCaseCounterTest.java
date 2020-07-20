@@ -35,12 +35,11 @@ public class UpperCaseCounterTest {
         String str = "ABCDEFGHIJ";
         int numberOfUpperCaseCharactersInString = upperCaseCounter.getNumberOfUpperCaseCharactersInString(str);
 
+        assertTrue(numberOfUpperCaseCharactersInString == 10);
         //assertTrue로 맞는 테스트 코드 작성
-
-        org.junit.Assert.assertTrue(numberOfUpperCaseCharactersInString == 10);
-
-        //assertTrue로 맞는 테스트 코드 작성
+        assertFalse(numberOfUpperCaseCharactersInString==1);
         //assertFalse로 틀리는 값을 넣어 테스트 작성
+        assertThat(numberOfUpperCaseCharactersInString, is(10));
         //assertThat 단정문을 사용해서 True인 테스트 코드 작성
     }
 
@@ -49,6 +48,8 @@ public class UpperCaseCounterTest {
     public void getNumberOfUpperCaseCharacterInString_return_6_for_ABCdefGHI(){
         String str = "ABCdefGHI";
         int result = upperCaseCounter.getNumberOfUpperCaseCharactersInString(str);
+
+        assertTrue(result == 6);
         //assertTrue로 맞는 테스트 코드 작성
         //assertFalse로 틀리는 값을 넣어 테스트 작성
         //assertThat 단정문을 사용해서 True인 테스트 코드 작성
