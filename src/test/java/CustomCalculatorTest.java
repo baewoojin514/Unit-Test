@@ -98,15 +98,24 @@ public class CustomCalculatorTest {
     @Test(timeout = 3000)
     public void 시간체크() throws InterruptedException{
         Thread.sleep(2000);
+
+        Thread.sleep(500);
+
+        Thread.sleep(100);
+        //3thread의 시간 합이 3000이 되지 않기 때문에 test를 이상 없이 통과 한다.
     }
     //시간을 초과하지 않기 때문에 test를 이상 없이 진행한다.
     @Test(expected = IndexOutOfBoundsException.class)
     public void testIsEmptyIndexOutofBoundException(){
         new ArrayList<Object>().get(0);
+
+        new ArrayList<Object>().indexOf(3);
     }
     @Test(expected = IndexOutOfBoundsException.class)
     public void testIsEmptyOutofBoundException(){
         new ArrayList<Object>().get(0);
+
+        new ArrayList<Object>().remove(3);
     }
     @Test
     public void testMethod(){
@@ -118,6 +127,8 @@ public class CustomCalculatorTest {
         ArrayList<Object> myList = new ArrayList<>();
         int result = myList.size();
         assertThat(myList, is(empty()));
+
         assertTrue(result==0);
+        //빈 배열 리스트이기 때문에 size가 0이다 따라서 test를 이상 없이 통과 한다.
     }
 }
