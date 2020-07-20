@@ -42,6 +42,9 @@ public class ChampionTest {
     public void givenCollectionWhenEmptyCorrect() {
         List<String> emptyList = new ArrayList<>();
         assertThat(emptyList, empty());
+        List<String> emptyList1 = new ArrayList<>();
+        assertThat(emptyList1, empty());
+        //리스트가 비어있기 때문에 test가 이상 없이 진행된다.
     }
 
     //notNullValue 활용한 테스트
@@ -51,6 +54,10 @@ public class ChampionTest {
         assertThat(lck, notNullValue());
         String empty = "";
         assertThat(empty, notNullValue());
+        String AbC = "ABC";
+        assertFalse(AbC==null);
+        //AbC문자열은 null이 아니기 때문에 false test를 이상 없이 통과 한다.
+
     }
 
     //nullValue 활용한 테스트
@@ -58,6 +65,12 @@ public class ChampionTest {
     public void givenStringWhenNullIsCorrect() {
         String lck = null;
         assertThat(lck, nullValue());
+
+        String AbC = null;
+        assertTrue(AbC==null);
+        //AbC문자열은 null이기 때문에 true test를 이상 없이 통과 한다.
+        assertFalse(AbC!=null);
+        //AbC문자열은 null이기 때문에 false test를 이상 없이 통과 한다.
     }
 
 
@@ -70,6 +83,10 @@ public class ChampionTest {
         String endString = "point";
         assertThat(sampleString1, anyOf(startsWith(startString), containsString(endString)));
         assertThat(sampleString2, is(endsWith(endString)));
+        assertThat(sampleString1, hasToString("Player Focus"));
+        assertThat(sampleString2, hasToString("Player point"));
+        assertThat(sampleString1, is(startsWith(startString)));
+        assertThat(sampleString2, is(startsWith(startString)));
     }
 
     //부동소수점 범위 closeTo 테스트
@@ -77,6 +94,8 @@ public class ChampionTest {
     public void testForFloatingPoint() {
         assertThat(3.14, closeTo(3, 0.2));
         assertThat(Math.PI, closeTo(3.14,0.01));
+        assertThat(7.6, closeTo(7,0.7));
+        assertThat((double)20/6, closeTo(3,0.4));
         //error parameter는 오차범위를 의미한다.
     }
 
@@ -85,6 +104,7 @@ public class ChampionTest {
     public void shouldNotErrorGetReference() {
         assertThat(championList.get(2), anything());
         assertThat(null, anything());
+        assertThat("ABC", anything());
         //어떤 값이던 참조할 수만 있다면 test가 이상 없이 진행된다.
     }
 
@@ -124,6 +144,7 @@ public class ChampionTest {
         assertThat(championList.get(1), hasProperty("position", equalTo("정글")));
         assertThat(championList.get(1), hasProperty("name"));
         assertThat(championList.get(1), hasProperty("name", equalTo("리신")));
+        //champion list의 두번째 요소의 name은 리신 position은 미드이다.
 
     }
 
@@ -134,6 +155,8 @@ public class ChampionTest {
         assertThat(champListNames.get(0), hasToString("루시안"));
         assertThat(champListNames.get(1), hasToString("애쉬"));
         assertThat(champListNames.get(3), hasToString("갈리오"));
+        assertFalse(champListNames.get(0).equals("렉사이"));
+        //championListNames 리스트의 첫번째 요소는 루시안이다(렉사이가 아니다).
     }
 
     //property와 value가 같은지 테스트
@@ -156,6 +179,17 @@ public class ChampionTest {
         assertTrue(champName.equals("다리우스"));
         assertThat(champName, is("다리우스"));
         assertThat("다리우스", is(champName));
+    }
+    //미드 챔피언은 르블랑이여야 한다라는 조건으로 테스트 코드 작성
+    @Test
+    public void shouldTopChampionIsLeBlanc(){
+        Optional<Champion> filteredChampion = championList.stream()
+                .filter(c -> c.getPosition().equals("미드"))
+                .findFirst();
+        String champName = filteredChampion.get().getName();
+        assertTrue(champName.equals("르블랑"));
+        assertThat(champName, is("르블랑"));
+        assertThat("르블랑", is(champName));
     }
 
 }
