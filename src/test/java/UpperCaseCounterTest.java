@@ -15,6 +15,9 @@ public class UpperCaseCounterTest {
     public void getNumberOfUpperCaseCharactersInString_return_0_for_null_input(){
         String str = null;
 
+        int numberOfUpperCaseCharinString = upperCaseCounter.getNumberOfUpperCaseCharactersInString(str);
+        assertThat(numberOfUpperCaseCharinString, is(0));
+
 //        int numberOfUpperCaseCharactersInString = upperCaseCounter.getNumberOfUpperCaseCharactersInString(str);
     }
 
@@ -30,8 +33,11 @@ public class UpperCaseCounterTest {
     @Test
     public void getNumberOfUpperCaseCharactersInString_return_10_for_ABCDEFGHIJ() {
         String str = "ABCDEFGHIJ";
-
         int numberOfUpperCaseCharactersInString = upperCaseCounter.getNumberOfUpperCaseCharactersInString(str);
+
+        //assertTrue로 맞는 테스트 코드 작성
+
+        org.junit.Assert.assertTrue(numberOfUpperCaseCharactersInString == 10);
 
         //assertTrue로 맞는 테스트 코드 작성
         //assertFalse로 틀리는 값을 넣어 테스트 작성
